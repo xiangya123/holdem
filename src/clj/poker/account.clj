@@ -10,7 +10,7 @@
    [poker.system.db    :as db]
    [crux.api           :as crux]))
 
-(s/def ::signup-params (s/keys :req [:player/name :player/avatar]))
+(s/def ::signup-params (s/keys :req [:player/name :player/avatar :player/password]))
 (s/def ::auth-params (s/keys :req [:player/token]))
 
 (defn throw-player-name-not-available!
@@ -25,7 +25,7 @@
 
 (comment
   ;; usages: signup! & get-player
-  (signup! {:player/name "bar", :player/avatar "AVATAR"})
+  (x! {:player/name "bar", :player/avatar "AVATAR"})
   (get-player [:player/name :player/avatar] {:player/name "foofoo"}))
 
 (defn get-player [query id] (crux/pull (crux/db db/node) query id))
@@ -79,3 +79,4 @@
              :where [[?p :player/id _]]}
          eids (map first (crux/q db q))]
      (crux/pull-many db query eids))))
+

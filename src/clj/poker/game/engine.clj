@@ -10,12 +10,12 @@
 (def default-game-opts
   {:sb          100,
    :bb          200,
-   :action-secs 30,
-   :extra-secs  60,
+   :action-secs 20,
+   :extra-secs  40,
    :seats-count 6,
-   :min-buyin   5000,
-   :max-buyin   20000
-   :max-stack   70000})
+   :min-buyin   50000,
+   :max-buyin   50000,
+   :max-stack   5000000})
 
 (def default-engine-attrs
   {:status             :game-status/idle,

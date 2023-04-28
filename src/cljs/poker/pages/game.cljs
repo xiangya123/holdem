@@ -102,10 +102,10 @@
          [:div.absolute.top-0.left-0.p-4.text-gray-300.hover:text-red-400.cursor-pointer.z-40
           {:on-click
            on-leave}
-          "Exit"]
+          "退出房间"]
          [:div.absolute.top-0.right-0.p-4.text-gray-300.hover:text-green-400.cursor-pointer.z-40
           {:on-click toggle-popup}
-          "History/Help"]
+          "历史/帮助"]
          (when @popup*
            [:div.absolute.bottom-0.left-0.right-0.top-0.bg-blue-900.flex.flex-col.justify-start.items-stretch.text-gray-300.z-50.p-4.overflow-scroll
             (case @popup*

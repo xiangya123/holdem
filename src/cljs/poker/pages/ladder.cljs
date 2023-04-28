@@ -19,10 +19,10 @@
         [:div.h-screen.w-screen.flex.flex-col.justify-start.items-stretch.text-gray-900.p-4
          [:button.absolute.left-0.top-0.p-4
           {:on-click #(re-frame/dispatch [:router/push-state :lobby])}
-          "Lobby"]
+          "游戏大厅"]
          [:button.absolute.right-0.top-0.p-4
           {:on-click #(re-frame/dispatch [:ladder/list-leaderboard])}
-          "Refresh"]
+          "刷新"]
          [:div.text-2xl.mt-8.text-center "Ladder Leaderboard"]
          (for [[idx
                 {:player/keys [name avatar],
@@ -47,8 +47,8 @@
             [:div.flex-1.flex.flex-col.items-stretch.px-4.text-sm
              {:class ["w-1/3"]}
              [:div.flex.justify-between.text-blue-900
-              [:div "Hands:"] [:div hands]]
+              [:div "游戏场次:"] [:div hands]]
              [:div.flex.justify-between.text-red-900
-              [:div "Buyin:"] [:div (u/format-stack-value buyin)]]
+              [:div "买入数量:"] [:div (u/format-stack-value buyin)]]
              [:div.flex.justify-between.text-green-900
-              [:div "Returns:"] [:div (u/format-stack-value returns)]]]])]))))
+              [:div "归还数量:"] [:div (u/format-stack-value returns)]]]])]))))

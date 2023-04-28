@@ -45,9 +45,25 @@
                  (html-util/as-str index-hydration-template)]
                 (page/include-js "js/app.js")]]))})
 
+(def name_pass (hash-map "xiangya" "123" "liyu" "iWkp2ovVj7" "yuanyilin" "wf2S7kSwPo" "xiechao" "TIiSOlBwCm" "Long" "123456" "jige" "123456" "nannan" "123" "狗子" "iLk2p09C" "xingxing" "123456"))
+(defn throw-player-name-not-available!
+  [name]
+  (throw (ex-info "账号密码不正确" {:name name})))
+
+(defn auth_by_password
+  [name, password]
+  (
+    if (= (get name_pass name) password)
+      (log/info "pass" name)
+      (throw-player-name-not-available! name)
+    ))
+
+
 (defn signup
   [{:keys [params session]}]
   (try
+    (log/info "show params:" params)
+    (auth_by_password (get params :player/name) (get params :player/password))
     (let [{:player/keys [token id]} (account/signup! params)]
       (-> (resp/response {:player/token token, :player/id id})
           ;; Old session contains CSRF token
@@ -239,7 +255,7 @@
     (log/debugf "Player %s buyin" (:player/name uid))
     (let [{:keys [seat game-id]} ?data
           game  (game/get-game game-id)
-          stack 20000]
+          stack 50000]
       (?reply-fn
        (game/send-game-event game
                              [:game-event/player-buyin

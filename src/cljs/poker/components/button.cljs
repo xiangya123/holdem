@@ -112,7 +112,7 @@
                 :on-key-down #(when (= "Enter" (aget % "key")) (expand-or-bet))}]]
              [:div.flex-1.m-1.border.border-red-700.bg-red-800.hover:bg-red-500.shadow-xl.text-gray-200.text-md.rounded-sm.h-10.flex.items-center.justify-center.cursor-pointer
               {:on-click expand-or-bet}
-              "Bet"]]
+              "下注"]]
 
             :expand
             [:div.relative.m-1.self-stretch.h-10 {:on-mouse-leave set-idle}
@@ -165,7 +165,7 @@
                 :on-key-down #(when (= "Enter" (aget % "key")) (expand-or-bet))}]]
              [:div.flex-1.m-1.border.border-red-700.bg-red-800.hover:bg-red-500.shadow-xl.text-gray-200.text-md.rounded-sm.h-10.flex.items-center.justify-center.cursor-pointer
               {:on-click expand-or-bet}
-              "Raise"]]
+              "加注"]]
 
             :expand
             [:div.relative.m-1.self-stretch.h-10 {:on-mouse-leave set-idle}
@@ -190,13 +190,13 @@
   [{:keys [on-join-bet]}]
   [:div.border.border-green-600.bg-green-700.hover:bg-green-500.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
    {:on-click on-join-bet}
-   "Blind Bet to join"])
+   "盲注加入"])
 
 (defn check-button
   [{:keys [on-check]}]
   [:div.border.border-blue-600.bg-blue-700.hover:bg-blue-500.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
    {:on-click on-check}
-   "Check"])
+   "过"])
 
 (defn call-button
   [{:keys [on-call street-bet bet stack]}]
@@ -205,24 +205,24 @@
       (>= value-to-call stack)
       [:div.border.border-yellow-600.bg-yellow-700.hover:bg-yellow-500.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
        {:on-click on-call}
-       "Call ALL-IN"]
+       "梭哈"]
 
       (zero? value-to-call)
       [:div.border.border-green-600.bg-green-700.hover:bg-green-500.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
        {:on-click on-call}
-       "Call"]
+       "跟起"]
 
       :else
       [:div.border.border-green-600.bg-green-700.hover:bg-green-500.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
        {:on-click on-call}
-       "Call"
+       "跟起"
        [:span.font-bold.ml-1 (str value-to-call)]])))
 
 (defn fold-button
   [{:keys [on-fold]}]
   [:div.border.border-gray-500.bg-gray-700.hover:bg-gray-600.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
    {:on-click on-fold}
-   "Fold"])
+   "丢牌"])
 
 ;; We don't really send reveal event to server
 (defn reveal-button
@@ -235,9 +235,9 @@
      :class    (if clicked ["diasbled" "cursor-not-allowed"] ["cursor-pointer"]),
      :diasbled (some? clicked)}
     (if clicked
-      "Reveal"
+      "开牌"
       (str
-       "Reveal ("
+       "开牌 ("
        @cnt*
        ")"))]
    (finally
@@ -248,7 +248,7 @@
   [:div.border.border-gray-500.bg-gray-700.hover:bg-gray-600.shadow-xl.text-gray-200.text-md.rounded-sm.m-1.h-10.flex-1.flex.items-center.justify-center.cursor-pointer
    {:on-click on-musk,
     :disabled disabled}
-   "Musk"])
+   "弃牌"])
 
 (defn runner-times-button
   [{:keys [on-click text selected? disabled?]}]
